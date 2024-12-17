@@ -1,0 +1,25 @@
+{
+  "name": "vercel-for-frontend",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "bun build ./src/server.ts --outdir ./dist --target node",
+    "start": "bun run dist/server.js"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "aws-sdk": "^2.1692.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "ignore": "^6.0.2",
+    "redis": "^4.7.0",
+    "simple-git": "^3.27.0"
+  }
+}
