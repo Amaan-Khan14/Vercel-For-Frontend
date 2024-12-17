@@ -4,7 +4,8 @@ import { simpleGit } from 'simple-git';
 import path from 'path'
 import { generateRandomId } from './utils/randomId';
 import { getAllFiles } from './utils/getAllFiles';
-import { s3, uploadFiles } from './utils/uploadFiles';
+import { uploadFiles } from './utils/uploadFiles';
+import { buildQueue } from './utils/buildQueue';
 
 const git = simpleGit()
 const app = express()
@@ -39,7 +40,9 @@ app.post('/get/url', async (req, res) => {
         // Wait for all uploads to complete
         await Promise.all(uploadPromises);
 
-        res.json({ id: randomId })
+        buildQueue(randomId)
+
+        res.json({ success: true, id: randomId })
     } catch (error) {
         console.error('Clone error:', error)
         res.status(500).json({ error: 'Failed to clone repository' })
