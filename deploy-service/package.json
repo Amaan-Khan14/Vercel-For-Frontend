@@ -1,0 +1,19 @@
+{
+  "name": "deploy-service",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "bun build ./src/server.ts --outdir ./dist --target node",
+    "start": "bun run dist/server.js"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1692.0",
+    "redis": "^4.7.0"
+  }
+}
