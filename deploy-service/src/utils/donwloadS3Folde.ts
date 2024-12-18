@@ -61,4 +61,24 @@ export async function downloadS3Folder(S3Path: string) {
     } catch (error) {
         console.error('Error downloading file from S3', error)
     }
-} 
+}
+
+
+export const uploadFiles = async (s3filePath: string, localFilePath: string) => {
+    // Read the file content.
+    const fileStream = fs.createReadStream(localFilePath)
+
+    // Upload the file to the S3 bucket.
+    try {
+        const response = await s3.upload({
+            Key: s3filePath,
+            Body: fileStream,
+            Bucket: "vercel-frontend",
+        }).promise()
+
+        console.log("File uploaded successfully", response)
+    } catch (error) {
+        console.error('Upload error:', error)
+    }
+
+}
